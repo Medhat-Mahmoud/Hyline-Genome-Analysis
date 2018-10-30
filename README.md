@@ -20,7 +20,7 @@
 
 
 # Merging the two bed
-    	./plink --chr-set 95 --allow-extra-chr --bfile d1 --bmerge d2.bed d2.bim d2.fam --make-bed --out data
+	./plink --chr-set 95 --allow-extra-chr --bfile d1 --bmerge d2.bed d2.bim d2.fam --make-bed --out data
 
 # Removing unknown location and sex chromosomes
     	./plink --chr-set 95 --bfile data --allow-extra-chr --chr 1-28 --make-bed --out d
