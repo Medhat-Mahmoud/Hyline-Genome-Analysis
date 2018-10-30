@@ -27,14 +27,13 @@
 
 
 # Sample Quality Control
+#Data Missingness
+./plink --dog --bfile d --missing --out out/d
 
-	#Data Missingness
-		./plink --dog --bfile d --missing --out out/d
+#Heterozygosity rate
+./plink --dog --bfile d --het --out out/d
 
-	#Heterozygosity rate
-		./plink --dog --bfile d --het --out out/d
-
-	#Related and duplicate individuals
+#Related and duplicate individuals
 
 		./plink --dog --bfile d --extract raw-GWA-data.prune.in --genome --min 0.2 --out pihat_min0.2
 
