@@ -1,7 +1,7 @@
 # Hyline-Genome
 
 
-#giving permission to Plnik 
+# giving permission to Plnik 
 	chmod +x plink
 
 
@@ -31,20 +31,20 @@
 # Data Missingness
 	./plink --dog --bfile d --missing --out out/d
 
-#Heterozygosity rate
+# Heterozygosity rate
 	./plink --dog --bfile d --het --out out/d
 
-#Related and duplicate individuals
+# Related and duplicate individuals
 
-		./plink --dog --bfile d --extract raw-GWA-data.prune.in --genome --min 0.2 --out pihat_min0.2
+	./plink --dog --bfile d --extract raw-GWA-data.prune.in --genome --min 0.2 --out pihat_min0.2
 
-		awk '{ if ($8 >0.9) print $0 }' pihat_min0.2.genome>zoom_pihat.genome
+	awk '{ if ($8 >0.9) print $0 }' pihat_min0.2.genome>zoom_pihat.genome
 
-		Rscript --no-save Relatedness.R
+	Rscript --no-save Relatedness.R
 
-		cat fail-* | sort -k1 | uniq > fail-qc-inds.txt
+	cat fail-* | sort -k1 | uniq > fail-qc-inds.txt
 
-		./plink --dog --bfile d --remove fail-qc-inds.txt --make-bed --out ci_d
+	./plink --dog --bfile d --remove fail-qc-inds.txt --make-bed --out ci_d
 
 
 # Markers Quality Control
