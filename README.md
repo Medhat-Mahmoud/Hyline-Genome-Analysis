@@ -53,6 +53,7 @@
 	
 # Generate a plot of the MAF distribution.
 	./plink --dog --bfile x_d --freq --out MAF_check
+	
 	Rscript --no-save MAF_check.R
 	
 # Delete SNPs with MAF <0.21.
@@ -61,7 +62,9 @@
 
 # Check the distribution of HWE p-values of all SNPs.
 	./plink --dog --bfile x2_d --hardy
+	
 	awk '{ if ($9 <0.00001) print $0 }' plink.hwe>plinkzoomhwe.hwe
+	
 	Rscript --no-save hwe.R
 	
 # Delete SNPs which are not in Hardy-Weinberg equilibrium (HWE).
@@ -82,17 +85,19 @@
 		
 # GCTA-GREML: Estimate variance explained by all the SNPs
 
-# Model one y(1:3) = mean + fixed effects (Dam+ sex + Chamber) + GRM + e 
+# Model one: y(1:3) = mean + fixed effects (Dam+ sex + Chamber) + GRM + e 
 	for i in {1..3}
 	do
 	./gcta64 --reml  --grm HL --autosome --autosome-num 28 --reml-pred-rand --mpheno $i --pheno R/phe.txt --covar R/cov2.txt --out HL$i
 	done
 
-# Model two y4 = mean + fixed effects (Dam+ sex + Chamber + 3 PCs) + GRM + e 
+# Model two: y4 = mean + fixed effects (Dam+ sex + Chamber + 3 PCs) + GRM + e 
 	./gcta64 --reml  --grm HL --autosome --autosome-num 28 --reml-pred-rand --mpheno 4 --pheno R/phe.txt --covar
+	
 	R/cov2.txt --qcovar HL.eigenvec --out HL4
 
 # Single SNP genome wide association SSGWA
+
 # Model one y(1:3) = mean + fixed effects (Dam+ sex + Chamber) + GRM + e 
 	for i in {1..3}
 	do
