@@ -15,6 +15,7 @@
    
 # Convert ped to bed
 	./plink --no-fid --no-parents --no-sex --no-pheno --chr-set 95 --allow-extra-chr --file d1  --make-bed --out d1
+	
 	./plink --no-fid --no-parents --no-sex --no-pheno --chr-set 95 --allow-extra-chr --file d2  --make-bed --out d2
 
 
